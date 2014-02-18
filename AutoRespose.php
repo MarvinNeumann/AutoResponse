@@ -11,24 +11,20 @@
  */
 class AutoResponse {
 
-    public $subject = "Keyword";
+    public $subject = "Barmenia";
     private $mbox;
-    
+
     /**
      *  server connection parameter
      */
     private $hostname = '{imap.gmail.com:993/imap/ssl}INBOX';
-    private $username = 'user.name@gmail.com';
-    private $password = 'password';
+    private $username = 'maxtor.mustermann@gmail.com';
+    private $password = 'maximumdamage';
 
     /**
      * connection
      */
-    public function __construct($hostname = NULL, $username = NULL, $password = NULL) {
-        $this->hostname = $hostname ? $hostname : $this->hostname;
-        $this->username = $username ? $username : $this->username;
-        $this->password = $password ? $password : $this->password;
-
+    public function __construct() {
         $this->mbox = imap_open($this->hostname, $this->username, $this->password);
     }
 
