@@ -13,6 +13,10 @@ class AutoResponse {
 
     public $subject = "Keyword";
     private $mbox;
+    
+    /**
+     *  server connection parameter
+     */
     private $hostname = '{imap.gmail.com:993/imap/ssl}INBOX';
     private $username = 'user.name@gmail.com';
     private $password = 'password';
