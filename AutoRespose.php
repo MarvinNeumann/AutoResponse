@@ -1,30 +1,35 @@
 <?php
 
 /**
- * AutoResponse Mailer
- * - it searches the inbox for new email that match the subject
- * - then it sends an Email with a Response Message
+ * simple autoresponse mailer
  *
- * @author    marvin neumann
+ * @author    Marvin Neumann
  * @version   1
  * @copyright 2014
+ * @todo messagelist
+ * @todo html response
+ * @todo sendmail
  */
 class AutoResponse {
 
-    public $subject = "Barmenia";
+    public $subject = "*";  // default
+    private $msgid;
     private $mbox;
 
     /**
      *  server connection parameter
      */
     private $hostname = '{imap.gmail.com:993/imap/ssl}INBOX';
-    private $username = 'maxtor.mustermann@gmail.com';
-    private $password = 'maximumdamage';
+    private $username = 'user.name@gmail.com';
+    private $password = 'password';
 
     /**
      * connection
      */
-    public function __construct() {
+    public function __construct($subject = NULL) {
+        if($subject) {
+            $this->subject = $subject;
+        }
         $this->mbox = imap_open($this->hostname, $this->username, $this->password);
     }
 
@@ -33,12 +38,16 @@ class AutoResponse {
      * @param type $subject
      */
     public function getMail($subject = NULL) {
+        if($subject) {
+            $this->subject = $subject;
+        }
         $search = imap_search($this->mbox, 'SUBJECT "' . $this->subject . '"');
-        print_r($search);   // array with message id
+        var_dump($search);   // message id
+        return $search;
     }
 
     /**
-     * send an Email Response
+     * send an Email Response to 
      * @param type $message
      */
     public function sendResponse($message = NULL) {

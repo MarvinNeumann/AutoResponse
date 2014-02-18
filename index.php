@@ -13,7 +13,7 @@ and open the template in the editor.
         <?php
         include './AutoRespose.php';
         $mailbox = new AutoResponse();
-        $mailbox->getMail();
+        $mailbox->getMail("Code");
 //        $mailbox->sendResponse();
         ?>
     </body>
